@@ -1,8 +1,4 @@
-const fs = require('fs');
-
-fs.readFile('day1_input', 'utf8', function(err, contents) {
-    var instructions = contents.split('\n');
-    instructions.pop();
+module.exports = function (instructions) {
     var output = 0;
     var outputs = [0];
     var repeat = 'false';
@@ -20,4 +16,4 @@ fs.readFile('day1_input', 'utf8', function(err, contents) {
         }
     }
     console.log(repeat);
-});
+};

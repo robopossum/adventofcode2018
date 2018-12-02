@@ -1,9 +1,4 @@
-const fs = require('fs');
-
-fs.readFile('input', 'utf8', function (err, contents) {
-    var strings = contents.split('\n');
-    strings.pop();
-
+module.exports = function(strings) {
     var charArray = [];
 
     var length = strings[0].trim().split('').length;
@@ -29,4 +24,4 @@ fs.readFile('input', 'utf8', function (err, contents) {
         }
     }
 
-});
+};

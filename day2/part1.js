@@ -1,9 +1,4 @@
-const fs = require('fs');
-
-fs.readFile('input', 'utf8', function (err, contents) {
-    var strings = contents.split('\n');
-    strings.pop();
-
+module.exports = function (strings) {
     var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
     var i = 0;
     var twos = [];
@@ -28,4 +23,4 @@ fs.readFile('input', 'utf8', function (err, contents) {
         i += 1;
     }
     console.log(twos.length * threes.length);
-});
+};
