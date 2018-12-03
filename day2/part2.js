@@ -1,6 +1,5 @@
 module.exports = function(strings) {
     var charArray = [];
-
     var length = strings[0].trim().split('').length;
 
     for (i=0;i<strings.length;i++) {
@@ -10,15 +9,14 @@ module.exports = function(strings) {
     for (i=0;i<length;i++) {
         var clone = charArray.slice();
         var found = []
-        for(j=i;j<clone.length;j+=length - 1) {
+        for(j=i;j<clone.length;j+=length-1) {
             clone.splice(j, 1);
         }
 
         for(j=0;j<clone.length;j+=length-1) {
-            var check = clone.slice(j, j + length -1).join('');
+            var check = clone.slice(j, j + length - 1).join('');
             if (found.includes(check)) {
-               console.log(check);
-               break;
+               return check;
             }
             found.push(check);
         }

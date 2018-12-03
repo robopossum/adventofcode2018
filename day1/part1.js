@@ -3,5 +3,5 @@ module.exports = function (instructions) {
     instructions.forEach(function(instruction) {
         output = eval(output + instruction);
     });
-    console.log(output);
+    return output;
 };

@@ -1,19 +1,14 @@
 module.exports = function (instructions) {
     var output = 0;
     var outputs = [0];
-    var repeat = 'false';
     var index = 0;
-    while ( repeat === 'false') {
+    while (true) {
         output = eval(output + instructions[index]);
-        if (outputs.includes(output)) {
-            repeat = output;
+        if (outputs.indexOf(output) > -1) {
+            return output;
         } else {
             outputs.push(output);
         }
-        index += 1;
-        if (index >= instructions.length) {
-            index = 0;
-        }
+        index = index < instructions.length - 1 ? index + 1 : 0;
     }
-    console.log(repeat);
 };

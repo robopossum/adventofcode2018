@@ -13,5 +13,8 @@ fs.readFile('./day' + day + '/input', 'utf8', function(err, contents) {
     inputs.pop(); //Removes last blank line
 
     var script = require('./day' + day + '/part' + part + '.js');
-    script(inputs);
+    var start = Date.now();
+    var result = script(inputs);
+    var runtime = Date.now() - start;
+    console.log('Got result: ' + result + ' in ' + runtime + ' milliseconds');
 });
