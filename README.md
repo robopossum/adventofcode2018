@@ -9,14 +9,15 @@ To run a specific day
 node run.js <day> <part>
 ```
 
-Runtimes from 2018-12-04 23:23:23
+Runtimes from 2018-12-04 23:30:22
+ 
 Day | Part | Time
 --- | --- | ---
 1 | 1 | 13ms
-1 | 2 | 11684ms
-2 | 1 | 7ms
+1 | 2 | 11595ms
+2 | 1 | 6ms
 2 | 2 | 15ms
-3 | 1 | 2099ms
-3 | 2 | 2350ms
-4 | 1 | 5ms
+3 | 1 | 2103ms
+3 | 2 | 2344ms
+4 | 1 | 6ms
 4 | 2 | 5ms
