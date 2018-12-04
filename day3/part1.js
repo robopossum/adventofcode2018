@@ -1,7 +1,7 @@
 module.exports = function(claims) {
     var xCoord = [];
     var yCoord = [];
-    var regex = /#([0-9]+) @ ([0-9]+),([0-9]+): ([0-9]+)x([0-9]+)/;
+    var regex = /#(\d+) @ (\d+),(\d+): (\d+)x(\d+)/;
 
     for(i=0;i<claims.length;i++) {
         var claim = regex.exec(claims[i]);
@@ -18,7 +18,7 @@ module.exports = function(claims) {
     for (x=0;x<xCoord.length;x++) {
         for (y=0;y<yCoord.length;y++) {
             if (xCoord[x] && yCoord[y]) {
-                if (xCoord[x].filter((n) => {return yCoord[y].indexOf(n) > -1;}).length > 1) {
+                if (xCoord[x].filter((n) => yCoord[y].indexOf(n) > -1).length > 1) {
                     overlaps += 1;
                 }
             }
