@@ -18,7 +18,7 @@ module.exports = function(claims) {
     for (x=0;x<xCoord.length;x++) {
         for (y=0;y<yCoord.length;y++) {
             if (xCoord[x] && yCoord[y]) {
-                if (xCoord[x].filter((n) => yCoord[y].indexOf(n) > -1).length > 1) {
+                if (xCoord[x].filter(n => yCoord[y].indexOf(n) > -1).length > 1) {
                     overlaps += 1;
                 }
             }

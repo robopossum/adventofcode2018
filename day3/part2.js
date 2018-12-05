@@ -20,7 +20,7 @@ module.exports = function(claims) {
     for (x=0;x<xCoord.length;x++) {
         for (y=0;y<yCoord.length;y++) {
             if (xCoord[x] && yCoord[y]) {
-                var overlapping = xCoord[x].filter((n) => yCoord[y].indexOf(n) > -1);
+                var overlapping = xCoord[x].filter(n => yCoord[y].indexOf(n) > -1);
                 if (overlapping.length > 1) {
                     for (i=0;i<overlapping.length;i++) {
                         var index = ids.indexOf(overlapping[i]);

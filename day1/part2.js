@@ -4,10 +4,10 @@ module.exports = function (instructions) {
     var index = 0;
     while (true) {
         output = eval(output + instructions[index]);
-        if (outputs.indexOf(output) > -1) {
+        if (outputs[output] !== undefined) {
             return output;
         } else {
-            outputs.push(output);
+            outputs[output] = output;
         }
         index = index < instructions.length - 1 ? index + 1 : 0;
     }
