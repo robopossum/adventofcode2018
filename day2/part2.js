@@ -1,9 +1,9 @@
 module.exports = function(strings) {
     var charArray = [];
-    var length = strings[0].trim().split('').length;
+    var length = strings[0].split('').length;
 
     for (i=0;i<strings.length;i++) {
-        charArray = charArray.concat(strings[i].trim().split(''));
+        charArray = charArray.concat(strings[i].split(''));
     }
 
     for (i=0;i<length;i++) {

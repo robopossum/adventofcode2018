@@ -6,31 +6,31 @@ module.exports = function(claims) {
 
     for(i=0;i<claims.length;i++) {
         var claim = regex.exec(claims[i]);
-        ids.push(claim[1]);
+        ids[claim[1]] = claim[1];
 
         for (x=claim[2];x<parseInt(claim[2]) + parseInt(claim[4]);x++) {
             xCoord[x] = xCoord[x] || [];
             xCoord[x].push(claim[1]);
         }
         for (y=claim[3];y<parseInt(claim[3]) + parseInt(claim[5]);y++) {
-            yCoord[y] = yCoord[y] || [];
-            yCoord[y].push(claim[1]);
+            yCoord[y] = yCoord[y] || {};
+            yCoord[y][claim[1]] = claim[1];
         }
     }
+    let height = Object.keys(yCoord).length;
     for (x=0;x<xCoord.length;x++) {
-        for (y=0;y<yCoord.length;y++) {
+        for (y=0;y<height;y++) {
             if (xCoord[x] && yCoord[y]) {
-                var overlapping = xCoord[x].filter(n => yCoord[y].indexOf(n) > -1);
+                var overlapping = xCoord[x].filter(n => yCoord[y][n] !== undefined);
                 if (overlapping.length > 1) {
                     for (i=0;i<overlapping.length;i++) {
-                        var index = ids.indexOf(overlapping[i]);
-                        if (index > -1) {
-                            ids.splice(index, 1);
+                        if (ids[overlapping[i]]) {
+                            delete ids[overlapping[i]];
                         }
                     }
                 }
             }
         }
     }
-    return ids.pop();
+    return Object.keys(ids);
 };
