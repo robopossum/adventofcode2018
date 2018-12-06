@@ -7,7 +7,7 @@ module.exports = function (coords) {
 
     for(i=0;i<coords.length;i++) {
         let matches = regex.exec(coords[i]);
-        coords[i] = {x: parseInt(matches[1]), y: parseInt(matches[2]), owned: [], infinite: false};
+        coords[i] = {x: parseInt(matches[1]), y: parseInt(matches[2]), owned: 0, infinite: false};
         maxX = coords[i].x > maxX ? coords[i].x : maxX;
         maxY = coords[i].y > maxY ? coords[i].y : maxY;
         minX = coords[i].x < minX ? coords[i].x : minX;
@@ -15,13 +15,11 @@ module.exports = function (coords) {
     }
 
     for (x=minX;x<=maxX;x++) {
-        for(y=minY;y<=minY;y++) {
-            console.log(x, y);
+        for(y=minY;y<=maxY;y++) {
             let closestDist = Infinity;
             let closest = null;
             for (i=0;i<coords.length;i++) {
                 let dist = Math.abs(coords[i].x - x) + Math.abs(coords[i].y - y);
-                //console.log(i, dist);
                 if (dist === closestDist) {
                     closest = 'shared';
                 } else if (dist < closestDist) {
@@ -29,20 +27,16 @@ module.exports = function (coords) {
                     closest = i;
                 }
             }
-            if (closest === 'shared') {
-                console.log('breaking');
-                break;
+            if (closest !== 'shared') {
+                coords[closest].owned++;
+                coords[closest].infinite = coords[closest].infinite || x === minX || x === maxX || y === minY || y === maxY;
             }
-            //console.log(closest);
-            coords[closest].owned.push({x:x, y:y});
-            coords[closest].infinite = coords[closest].infinite || x === minX || x === maxX || y === minY || y === maxY;
         }
     }
     var lrgArea = -Infinity;
     for(i=0;i<coords.length;i++) {
         if (!coords[i].infinite) {
-            let area = coords[i].owned.length;
-            lrgArea = area > lrgArea ? area : lrgArea;
+            lrgArea = coords[i].owned > lrgArea ? coords[i].owned : lrgArea;
         }
     }
     return lrgArea;
