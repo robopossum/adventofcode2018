@@ -1,22 +1,21 @@
 module.exports = function (string) {
     string = string.pop();
-    var regexStr = '(';
-    var strings = [];
-    for(i=0;i<26;i++) {
-        let letter = String.fromCharCode(97 + i);
-        let uLetter = String.fromCharCode(65 + i);
-        regexStr += letter + uLetter + '|' + uLetter + letter + '|';
-        strings.push(string.replace(new RegExp('(' + letter + '|' + uLetter + ')', 'g'), ''));
-    }
-    var regex = new RegExp(regexStr.substring(0, regexStr.length - 1) + ')', 'g');
-    var best = Infinity;
-    for (i=0;i<strings.length;i++) {
-        var last;
-        while (last !== strings[i] ) {
-            last = strings[i];
-            strings[i] = strings[i].replace(regex, '');
+    var react = (str) => {
+        for (i=0;i<str.length;i++) {
+            if (Math.abs(str.charCodeAt(i) - str.charCodeAt(i+1)) === 32) {
+                str = str.slice(0, i) + str.slice(i+2);
+                i = i === 0 ? i - 1 : i - 2;
+            }
         }
-        best = strings[i].length < best ? strings[i].length : best;
+        return str;
+    };
+    string = react(string);
+
+    var best = Infinity;
+    for (j=0;j<26;j++) {
+        let substr = string.replace(new RegExp('([' + String.fromCharCode(97 + j) + String.fromCharCode(65 + j) + '])', 'g'), '');
+        substr = react(substr);
+        best = substr.length < best ? substr.length : best;
     }
     return best;
 };

@@ -14,21 +14,21 @@ To run with test data
 node run.js <day> <part> test
 ```
 
-Runtimes from 2018-12-07 20:26:34
+Runtimes from 2018-12-07 23:03:30
  
 Day | Part | Time
 --- | --- | ---:
-1 | 1 | 13ms
-1 | 2 | 1943ms
+1 | 1 | 2ms
+1 | 2 | 80ms
 2 | 1 | 6ms
 2 | 2 | 14ms
-3 | 1 | 765ms
-3 | 2 | 783ms
+3 | 1 | 760ms
+3 | 2 | 748ms
 4 | 1 | 6ms
 4 | 2 | 6ms
-5 | 1 | 61ms
-5 | 2 | 1513ms
+5 | 1 | 53ms
+5 | 2 | 59ms
 6 | 1 | 31ms
 6 | 2 | 22ms
 7 | 1 | 1ms
-7 | 2 | 1ms
+7 | 2 | 2ms
