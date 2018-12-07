@@ -1,7 +1,6 @@
 module.exports = function (steps) {
     steps.sort();
     var objs = {};
-    var inv = {};
     var regex = /Step ([A-Z]) must be finished before step ([A-Z]) can begin./;
     var workers = [0, 0, 0, 0, 0];
     var complete = {};
@@ -10,9 +9,6 @@ module.exports = function (steps) {
         objs[matches[1]] = objs[matches[1]] || '';
         objs[matches[2]] = objs[matches[2]] || '';
         objs[matches[2]] = objs[matches[2]] + matches[1];
-        inv[matches[1]] = inv[matches[1]] || '';
-        inv[matches[2]] = inv[matches[2]] || '';
-        inv[matches[1]] = inv[matches[1]] + matches[2];
     }
     var deps = Object.assign({}, objs);
     var length = Object.keys(objs).length;
@@ -22,11 +18,11 @@ module.exports = function (steps) {
             let letter = String.fromCharCode(65 + i);
             if (objs[letter] === '') {
                 let req = deps[letter].split('');
-                console.log(req);
                 let start = 0;
                 for (k=0;k<req.length;k++) {
                     start = complete[req[k]] > start ? complete[req[k]] : start;
                 }
+
                 index = 0;
                 for (j=1;j<5;j++) {
                     index = workers[j] < workers[index] ? j : index;
@@ -42,7 +38,5 @@ module.exports = function (steps) {
             }
         }
     }
-    console.log(workers);
-    console.log(complete)
     return workers[index];
 };
