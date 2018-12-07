@@ -14,14 +14,14 @@ module.exports = function (steps) {
         inv[matches[2]] = inv[matches[2]] || '';
         inv[matches[1]] = inv[matches[1]] + matches[2];
     }
-    console.log(objs);
+    var deps = Object.assign({}, objs);
     var length = Object.keys(objs).length;
     var index;
     while (length > 0) {
         for (i=0;i<26;i++) {
             let letter = String.fromCharCode(65 + i);
             if (objs[letter] === '') {
-                let req = objs[letter].split('');
+                let req = deps[letter].split('');
                 console.log(req);
                 let start = 0;
                 for (k=0;k<req.length;k++) {
